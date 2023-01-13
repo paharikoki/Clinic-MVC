@@ -1,5 +1,6 @@
 package Klinik.Dao;
 
+import Klinik.Database.Koneksi;
 import Klinik.Model.Auth;
 
 import java.sql.Connection;
@@ -12,6 +13,9 @@ public class AuthDao implements AuthInterface{
     final String login="SELECT * FROM auth WHERE username = ? AND password = ?";
     final String changePassword="UPDATE auth SET password = ? WHERE username = ?";
     Connection connection;
+    public AuthDao(){
+        connection = Koneksi.connection();
+    }
 
     @Override
     public void register(Auth auth) {
@@ -22,10 +26,6 @@ public class AuthDao implements AuthInterface{
             statement.setString(2,auth.getUsername());
             statement.setString(3,auth.getPassword());
             statement.executeUpdate();
-            ResultSet rs = statement.getGeneratedKeys();
-            while (rs.next()){
-                auth.setId(rs.getInt(0));
-            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }finally {

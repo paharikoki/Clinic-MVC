@@ -87,6 +87,11 @@ public class Register extends javax.swing.JFrame {
         jLabel2.setText("Fullname");
 
         txtFullname.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtFullname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFullnameActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setText("Username");
@@ -207,6 +212,10 @@ public class Register extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnRegisterActionPerformed
 
+    private void txtFullnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFullnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFullnameActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -256,7 +265,6 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JTextField txtFullname;
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUsername;
-
     // End of variables declaration//GEN-END:variables
 
     public JLabel getLbCaptcha() {

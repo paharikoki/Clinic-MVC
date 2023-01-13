@@ -26,11 +26,12 @@ public class RegisterController {
             auth1.setFullname(frame.getTxtFullname().getText());
             auth1.setUsername(frame.getTxtUsername().getText());
             auth1.setPassword(frame.getTxtPassword().getText());
-            authInterface.register(auth);
+            authInterface.register(auth1);
             JOptionPane.showMessageDialog(frame, "Your account has been successfully registered!", "Success", JOptionPane.INFORMATION_MESSAGE);
         }catch (Exception e){
-            JOptionPane.showMessageDialog(frame, "Error : "+e, "Error", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(frame, "Error : "+e, "Error", JOptionPane.ERROR_MESSAGE);
 
         }
     }
+
 }
