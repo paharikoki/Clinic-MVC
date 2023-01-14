@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Coding/JavaProject/klinik/src/Klinik/Model/PasienTableModel.java</file>
-            <file>file:/D:/Coding/JavaProject/klinik/src/Klinik/Model/KunjunganTableModel.java</file>
-            <file>file:/D:/Coding/JavaProject/klinik/src/Klinik/Model/Kunjungan.java</file>
-            <file>file:/D:/Coding/JavaProject/klinik/src/Klinik/Dao/KunjunganDao.java</file>
+            <file>file:/D:/Coding/JavaProject/klinik/src/Klinik/View/Doctor/MainDoctor.java</file>
+            <file>file:/D:/Coding/JavaProject/klinik/src/Klinik/View/Auth/Register.java</file>
+            <file>file:/D:/Coding/JavaProject/klinik/src/Klinik/View/Auth/Login.java</file>
+            <file>file:/D:/Coding/JavaProject/klinik/src/Klinik/View/Doctor/AddDoctor.java</file>
         </group>
     </open-files>
 </project-private>

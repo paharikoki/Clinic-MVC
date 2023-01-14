@@ -1,7 +1,7 @@
 package Klinik.Dao;
 
-import Klinik.Database.Koneksi;
-import Klinik.Model.Dokter;
+import Klinik.Database.Connection;
+import Klinik.Model.Doctor;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,18 +9,18 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class DokterDao implements DokterInterface{
-    Connection connection;
+public class DoctorDao implements DoctorInterface {
+    java.sql.Connection connection;
     final String insert="INSERT INTO doctors(firstName,lastName,specialty,phoneNumber) VALUES (?,?,?,?)";
-    final String update="update doctors set firstName=?,lastName=?,specialty=?,phoneNumber=? where doctorId=?";
-    final String delete="delete from doctors where doctorId=?";
-    final String selectAll ="select * from doctors";
+    final String update="UPDATE doctors SET firstName=?,lastName=?,specialty=?,phoneNumber=? WHERE doctorId=?";
+    final String delete="DELETE FROM doctors WHERE doctorId=?";
+    final String selectAll ="SELECT * FROM doctors";
     final String findDoctorName="SELECT * FROM doctors WHERE firstName LIKE ? OR lastName LIKE ?";
-    public DokterDao(){
-        Koneksi.connection();
+    public DoctorDao(){
+        connection= Connection.connection();
     }
     @Override
-    public void insert(Dokter d) {
+    public void insert(Doctor d) {
         PreparedStatement statement =null;
         try {
             statement= connection.prepareStatement(insert);
@@ -29,10 +29,6 @@ public class DokterDao implements DokterInterface{
             statement.setString(3,d.getSpecialty());
             statement.setString(4,d.getPhoneNumber());
             statement.executeUpdate();
-            ResultSet rs = statement.getGeneratedKeys();
-            while (rs.next()){
-                d.setDoctorId(rs.getInt(0));
-            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }finally {
@@ -45,7 +41,7 @@ public class DokterDao implements DokterInterface{
     }
 
     @Override
-    public void update(Dokter d) {
+    public void update(Doctor d) {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(update);
@@ -79,15 +75,15 @@ public class DokterDao implements DokterInterface{
     }
 
     @Override
-    public List<Dokter> getAll() {
-        List<Dokter> dc = null;
+    public List<Doctor> getAll() {
+        List<Doctor> dc = null;
         try {
-            dc = new ArrayList<Dokter>();
+            dc = new ArrayList<Doctor>();
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery(selectAll);
             while (rs.next()){
-                Dokter doctors = new Dokter();
-                doctors.setDoctorId(rs.getInt("id"));
+                Doctor doctors = new Doctor();
+                doctors.setDoctorId(rs.getInt("doctorId"));
                 doctors.setFirstName(rs.getString("firstName"));
                 doctors.setLastName(rs.getString("lastName"));
                 doctors.setSpecialty(rs.getString("specialty"));
@@ -95,24 +91,24 @@ public class DokterDao implements DokterInterface{
                 dc.add(doctors);
             }
         } catch (SQLException e) {
-            Logger.getLogger(DokterDao.class.getName()).log(Level.SEVERE,null,e);
+            Logger.getLogger(DoctorDao.class.getName()).log(Level.SEVERE,null,e);
             throw new RuntimeException(e);
         }
         return dc;
     }
 
     @Override
-    public List<Dokter> getFindDoctorName(String name) {
-        List<Dokter> dc = null;
+    public List<Doctor> getFindDoctorName(String name) {
+        List<Doctor> dc = null;
         try {
-            dc= new ArrayList<Dokter>();
+            dc= new ArrayList<Doctor>();
             PreparedStatement statement = connection.prepareStatement(findDoctorName);
             statement.setString(1,"%"+name+"%");
             statement.setString(2,"%"+name+"%");
             ResultSet rs = statement.executeQuery();
             while (rs.next()){
-                Dokter doctors =new Dokter();
-                doctors.setDoctorId(rs.getInt("id"));
+                Doctor doctors =new Doctor();
+                doctors.setDoctorId(rs.getInt("doctorId"));
                 doctors.setFirstName(rs.getString("firstName"));
                 doctors.setLastName(rs.getString("lastName"));
                 doctors.setSpecialty(rs.getString("specialty"));
@@ -120,7 +116,7 @@ public class DokterDao implements DokterInterface{
                 dc.add(doctors);
             }
         } catch (SQLException e) {
-            Logger.getLogger(DokterDao.class.getName()).log(Level.SEVERE,null,e);
+            Logger.getLogger(DoctorDao.class.getName()).log(Level.SEVERE,null,e);
         }
         return dc;
     }

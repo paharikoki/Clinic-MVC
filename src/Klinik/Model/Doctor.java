@@ -1,6 +1,6 @@
 package Klinik.Model;
 
-public class Dokter {
+public class Doctor {
     private int doctorId;
     private String firstName;
     private String lastName;

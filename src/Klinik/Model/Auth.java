@@ -6,6 +6,7 @@ public class Auth {
     private String username;
     private String password;
 
+
     public int getId() {
         return id;
     }

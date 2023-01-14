@@ -1,12 +1,12 @@
 package Klinik.Database;
 
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
-import java.sql.Connection;
+
 import java.sql.SQLException;
 
-public class Koneksi {
-    static Connection conn;
-    public static final Connection connection(){
+public class Connection {
+    static java.sql.Connection conn;
+    public static final java.sql.Connection connection(){
         if (conn == null){
             MysqlDataSource data = new MysqlDataSource();
             data.setDatabaseName("db_klinik");

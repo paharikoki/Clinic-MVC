@@ -1,9 +1,9 @@
 package Klinik.Model;
 
-public class Kunjungan {
+public class Visit {
     private int visitId;
-    private Dokter dokter;
-    private Pasien pasien;
+    private Doctor doctor;
+    private Patient patient;
     private String visitDate;
     private String diagnosis;
     private String treatment;
@@ -16,20 +16,20 @@ public class Kunjungan {
         this.visitId = visitId;
     }
 
-    public Dokter getDokter() {
-        return dokter;
+    public Doctor getDokter() {
+        return doctor;
     }
 
-    public void setDokter(Dokter dokter) {
-        this.dokter = dokter;
+    public void setDokter(Doctor doctor) {
+        this.doctor = doctor;
     }
 
-    public Pasien getPasien() {
-        return pasien;
+    public Patient getPasien() {
+        return patient;
     }
 
-    public void setPasien(Pasien pasien) {
-        this.pasien = pasien;
+    public void setPasien(Patient patient) {
+        this.patient = patient;
     }
 
     public String getVisitDate() {

@@ -5,6 +5,8 @@
  */
 package Klinik.View.Auth;
 
+import javax.swing.JLabel;
+
 /**
  *
  * @author Administrator
@@ -17,7 +19,6 @@ public class ChangePassword extends javax.swing.JFrame {
     public ChangePassword() {
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,6 +42,7 @@ public class ChangePassword extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**

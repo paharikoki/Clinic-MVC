@@ -3,26 +3,26 @@ package Klinik.Model;
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
-public class DokterTableModel extends AbstractTableModel {
-    List<Dokter> dokterList;
+public class DoctorTableModel extends AbstractTableModel {
+    List<Doctor> doctorList;
 
-    public DokterTableModel(List<Dokter> dokterList) {
-        this.dokterList = dokterList;
+    public DoctorTableModel(List<Doctor> doctorList) {
+        this.doctorList = doctorList;
     }
 
     @Override
     public String getColumnName(int column) {
         switch (column){
             case 0:
-                return "doctorId";
+                return "Number";
             case 1:
-                return "fisrtName";
+                return "First Name";
             case 2:
-                return "lastName";
+                return "Last Name";
             case 3 :
-                return "specialty";
+                return "Specialty";
             case 4:
-                return "phoneNumber";
+                return "Phone Number";
             default:
                 return null;
         }
@@ -30,7 +30,7 @@ public class DokterTableModel extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return dokterList.size();
+        return doctorList.size();
     }
 
     @Override
@@ -42,15 +42,15 @@ public class DokterTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex){
             case 0:
-                return dokterList.get(rowIndex).getDoctorId();
+                return doctorList.get(rowIndex).getDoctorId();
             case 1:
-                return dokterList.get(rowIndex).getFirstName();
+                return doctorList.get(rowIndex).getFirstName();
             case 2:
-                return dokterList.get(rowIndex).getLastName();
+                return doctorList.get(rowIndex).getLastName();
             case 3:
-                return dokterList.get(rowIndex).getSpecialty();
+                return doctorList.get(rowIndex).getSpecialty();
             case 4:
-                return dokterList.get(rowIndex).getPhoneNumber();
+                return doctorList.get(rowIndex).getPhoneNumber();
             default:
                 return null;
         }

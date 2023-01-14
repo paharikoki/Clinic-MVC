@@ -1,11 +1,10 @@
 package Klinik.Dao;
 
-import Klinik.Model.Dokter;
-import Klinik.Model.Kunjungan;
-import Klinik.Model.Pasien;
+import Klinik.Model.Doctor;
+import Klinik.Model.Visit;
+import Klinik.Model.Patient;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class KunjunganDao implements KunjunganInterface {
+public class VisitDao implements VisitInterface {
     Connection connection;
     final String insert="INSERT INTO visits (patientId, doctorId, visitDate,diagnosis,treatment) VALUES (?, ?, ?,?,?)";
     final String delete="DELETE FROM visits WHERE visitId=?";
@@ -21,7 +20,7 @@ public class KunjunganDao implements KunjunganInterface {
     final String selectAllByPatientName="SELECT * FROM kunjungan JOIN pasien ON kunjungan.patientId = pasien.patientId WHERE pasien.firstName = 'John' AND pasien.lastName = 'Doe'";
 
     @Override
-    public void insert(Kunjungan k) {
+    public void insert(Visit k) {
         PreparedStatement statement = null;
         String dateNow;
         LocalDateTime now = LocalDateTime.now();
@@ -65,44 +64,44 @@ public class KunjunganDao implements KunjunganInterface {
     }
 
     @Override
-    public List<Kunjungan> getAll() {
-        List<Kunjungan> kj = null;
+    public List<Visit> getAll() {
+        List<Visit> kj = null;
         try {
-            kj = new ArrayList<Kunjungan>();
+            kj = new ArrayList<Visit>();
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery(selectAll);
             while (rs.next()){
-                Kunjungan kunjungan = new Kunjungan();
-                kunjungan.setVisitId(rs.getInt("visitId"));
-                Pasien pasien = new Pasien();
-                pasien.setPatientId(rs.getInt("patientId"));
-                pasien.setFirstName(rs.getString("firstName"));
-                pasien.setLastName(rs.getString("lastName"));
-                pasien.setDateOfBirth(rs.getString("dateOfBirth"));
-                pasien.setGender(rs.getString("gender"));
-                pasien.setAddress(rs.getString("address"));
-                kunjungan.setPasien(pasien);
-                Dokter dokter = new Dokter();
-                dokter.setDoctorId(rs.getInt("doctorId"));
-                dokter.setFirstName(rs.getString("firstName"));
-                dokter.setLastName(rs.getString("lastName"));
-                dokter.setSpecialty(rs.getString("specialty"));
-                dokter.setPhoneNumber(rs.getString("phoneNumber"));
-                kunjungan.setDokter(dokter);
-                kunjungan.setVisitDate(rs.getString("visitDate"));
-                kunjungan.setDiagnosis(rs.getString("diagnosis"));
-                kunjungan.setTreatment(rs.getString("treatment"));
-                kj.add(kunjungan);
+                Visit visit = new Visit();
+                visit.setVisitId(rs.getInt("visitId"));
+                Patient patient = new Patient();
+                patient.setPatientId(rs.getInt("patientId"));
+                patient.setFirstName(rs.getString("firstName"));
+                patient.setLastName(rs.getString("lastName"));
+                patient.setDateOfBirth(rs.getString("dateOfBirth"));
+                patient.setGender(rs.getString("gender"));
+                patient.setAddress(rs.getString("address"));
+                visit.setPasien(patient);
+                Doctor doctor = new Doctor();
+                doctor.setDoctorId(rs.getInt("doctorId"));
+                doctor.setFirstName(rs.getString("firstName"));
+                doctor.setLastName(rs.getString("lastName"));
+                doctor.setSpecialty(rs.getString("specialty"));
+                doctor.setPhoneNumber(rs.getString("phoneNumber"));
+                visit.setDokter(doctor);
+                visit.setVisitDate(rs.getString("visitDate"));
+                visit.setDiagnosis(rs.getString("diagnosis"));
+                visit.setTreatment(rs.getString("treatment"));
+                kj.add(visit);
             }
         } catch (SQLException e) {
-            Logger.getLogger(KunjunganDao.class.getName()).log(Level.SEVERE,null,e);
+            Logger.getLogger(VisitDao.class.getName()).log(Level.SEVERE,null,e);
             throw new RuntimeException(e);
         }
         return kj;
     }
 
     @Override
-    public List<Kunjungan> getFindPatientName(String name) {
+    public List<Visit> getFindPatientName(String name) {
         return null;
     }
 }

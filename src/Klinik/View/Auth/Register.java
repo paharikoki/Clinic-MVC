@@ -6,16 +6,9 @@
 package Klinik.View.Auth;
 
 import Klinik.Controller.Auth.RegisterController;
-import Klinik.Dao.AuthDao;
-import Klinik.Dao.AuthInterface;
-import Klinik.Database.Koneksi;
 import Klinik.Model.Auth;
 
 import javax.swing.*;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Random;
 
 /**
@@ -46,6 +39,10 @@ public class Register extends javax.swing.JFrame {
 
         String randomString = sb.toString().toLowerCase();
         lbCaptcha.setText(randomString);
+    }
+    public void viewLogin(){
+        this.dispose();
+        new Login().setVisible(true);
     }
     public void clearField(){
         txtFullname.setText("");
@@ -113,6 +110,11 @@ public class Register extends javax.swing.JFrame {
 
         btnLogin.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Have Account? Login Here");
 
@@ -197,7 +199,7 @@ public class Register extends javax.swing.JFrame {
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
         if (txtFullname.getText().equals("") || txtUsername.getText().equals("") || txtPassword.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "data tidak boleh kosong", "validasi data", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please fill in all the fields.", "Required Fill Field", JOptionPane.INFORMATION_MESSAGE);
             captcha();
             return;
         }else {
@@ -215,6 +217,11 @@ public class Register extends javax.swing.JFrame {
     private void txtFullnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFullnameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFullnameActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+        viewLogin();
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments

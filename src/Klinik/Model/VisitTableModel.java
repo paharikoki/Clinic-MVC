@@ -3,11 +3,11 @@ package Klinik.Model;
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
-public class KunjunganTableModel extends AbstractTableModel {
-    List<Kunjungan> kunjunganList;
+public class VisitTableModel extends AbstractTableModel {
+    List<Visit> visitList;
 
-    public KunjunganTableModel(List<Kunjungan> kunjunganList) {
-        this.kunjunganList = kunjunganList;
+    public VisitTableModel(List<Visit> visitList) {
+        this.visitList = visitList;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class KunjunganTableModel extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return kunjunganList.size();
+        return visitList.size();
     }
 
     @Override
@@ -48,21 +48,21 @@ public class KunjunganTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex){
             case 0:
-                return kunjunganList.get(rowIndex).getVisitId();
+                return visitList.get(rowIndex).getVisitId();
             case 1:
-                return kunjunganList.get(rowIndex).getPasien().getPatientId();
+                return visitList.get(rowIndex).getPasien().getPatientId();
             case 2:
-                return kunjunganList.get(rowIndex).getPasien().getFirstName()+" "+kunjunganList.get(rowIndex).getPasien().getLastName();
+                return visitList.get(rowIndex).getPasien().getFirstName()+" "+ visitList.get(rowIndex).getPasien().getLastName();
             case 3:
-                return kunjunganList.get(rowIndex).getDokter().getDoctorId();
+                return visitList.get(rowIndex).getDokter().getDoctorId();
             case 4:
-                return kunjunganList.get(rowIndex).getDokter().getFirstName()+" "+kunjunganList.get(rowIndex).getPasien().getLastName();
+                return visitList.get(rowIndex).getDokter().getFirstName()+" "+ visitList.get(rowIndex).getPasien().getLastName();
             case 5:
-                return kunjunganList.get(rowIndex).getVisitDate();
+                return visitList.get(rowIndex).getVisitDate();
             case 6:
-                return kunjunganList.get(rowIndex).getDiagnosis();
+                return visitList.get(rowIndex).getDiagnosis();
             case 7:
-                return kunjunganList.get(rowIndex).getTreatment();
+                return visitList.get(rowIndex).getTreatment();
             default:
                 return null;
         }
