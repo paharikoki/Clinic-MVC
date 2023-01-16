@@ -42,8 +42,20 @@ public class Login extends javax.swing.JFrame {
     }
     
     public void viewChangePassword(){
-        this.dispose();
-        new ChangePassword().setVisible(true);
+        if (txtUsername.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Please enter your username to change your password", "Change Password", JOptionPane.PLAIN_MESSAGE);
+        }else {
+            if (loginController.checkUsername(txtUsername.getText())){
+                this.dispose();
+                ChangePassword changePassword = new ChangePassword();
+                changePassword.setUsername(txtUsername.getText());
+                changePassword.setVisible(true);
+            }else {
+                JOptionPane.showMessageDialog(null, "Username not found, unable to change password!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+
     }
 
     /**

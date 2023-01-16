@@ -63,9 +63,9 @@ public class AuthDao implements AuthInterface{
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(changePassword);
-            statement = connection.prepareStatement(password);
-            statement = connection.prepareStatement(username);
-            statement.executeQuery();
+            statement.setString(1,password);
+            statement.setString(2,username);
+            statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

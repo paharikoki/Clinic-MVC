@@ -29,7 +29,7 @@ public class RegisterController {
             fullName = frame.getTxtFullname().getText();
             userName = frame.getTxtUsername().getText();
             password = frame.getTxtPassword().getText();
-            if (userName.length() <6){
+            if (userName.length() <2){
                 JOptionPane.showMessageDialog(frame, "Username must be at least 8 characters long.");
                 frame.captcha();
                 return;
@@ -45,7 +45,7 @@ public class RegisterController {
                 frame.getTxtPassword().setText("");
                 frame.captcha();
             }else {
-                hashedPassword = BCryptPasswordHasher.hashPassword(password);
+                hashedPassword = PasswordHasher.hashPassword(password);
                 Auth auth1 = new Auth();
                 auth1.setFullname(fullName);
                 auth1.setUsername(userName);
@@ -53,6 +53,7 @@ public class RegisterController {
                 authInterface.register(auth1);
                 JOptionPane.showMessageDialog(frame, "Your account has been successfully registered!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 frame.clearField();
+                frame.viewLogin();
             }
         }catch (Exception e){
             JOptionPane.showMessageDialog(frame, "Error : "+e, "Error", JOptionPane.ERROR_MESSAGE);
