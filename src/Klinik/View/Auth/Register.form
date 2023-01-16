@@ -49,15 +49,15 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="btnLogin" min="-2" pref="366" max="-2" attributes="0"/>
                           <Component id="btnRegister" min="-2" pref="366" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="207" max="-2" attributes="0"/>
                       <Component id="lbCaptcha" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="175" max="-2" attributes="0"/>
+                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="44" max="32767" attributes="0"/>

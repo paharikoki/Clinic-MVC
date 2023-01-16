@@ -5,6 +5,7 @@
         <group>
             <file>file:/D:/Coding/JavaProject/klinik/src/Klinik/View/Doctor/MainDoctor.java</file>
             <file>file:/D:/Coding/JavaProject/klinik/src/Klinik/View/Auth/Register.java</file>
+            <file>file:/D:/Coding/JavaProject/klinik/src/Klinik/View/Auth/ChangePassword.java</file>
             <file>file:/D:/Coding/JavaProject/klinik/src/Klinik/View/Auth/Login.java</file>
             <file>file:/D:/Coding/JavaProject/klinik/src/Klinik/View/Doctor/AddDoctor.java</file>
         </group>

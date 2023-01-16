@@ -3,6 +3,8 @@ package Klinik.Controller.Auth;
 import Klinik.Dao.AuthDao;
 import Klinik.Dao.AuthInterface;
 import Klinik.Model.Auth;
+import Klinik.Utils.BCryptPasswordHasher;
+import Klinik.Utils.PasswordHasher;
 import Klinik.View.Auth.Login;
 
 public class LoginController {
@@ -17,8 +19,15 @@ public class LoginController {
     }
 
     public static boolean login(String username, String password) {
-        Auth auth =authInterface.login(username,password);
+        String hashedPassword = PasswordHasher.hashPassword(password);
+        Auth auth =authInterface.login(username,hashedPassword);
         if (auth != null) {
+            return true;
+        }
+        return false;
+    }
+    public boolean checkUsername(String username) {
+        if (authInterface.checkUsernameExists(username)!= null){
             return true;
         }
         return false;

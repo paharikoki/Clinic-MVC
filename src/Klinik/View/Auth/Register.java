@@ -39,6 +39,7 @@ public class Register extends javax.swing.JFrame {
 
         String randomString = sb.toString().toLowerCase();
         lbCaptcha.setText(randomString);
+        txtCaptcha.setText("");
     }
     public void viewLogin(){
         this.dispose();
@@ -151,13 +152,13 @@ public class Register extends javax.swing.JFrame {
                         .addGap(71, 71, 71)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(66, 66, 66)
-                                .addComponent(jLabel7))))
+                            .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(207, 207, 207)
-                        .addComponent(lbCaptcha)))
+                        .addComponent(lbCaptcha))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(175, 175, 175)
+                        .addComponent(jLabel7)))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -209,7 +210,6 @@ public class Register extends javax.swing.JFrame {
                 return;
             }else {
                 registerController.register();
-                clearField();
             }
         }
     }//GEN-LAST:event_btnRegisterActionPerformed
