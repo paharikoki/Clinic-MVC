@@ -5,7 +5,9 @@
  */
 package Klinik.View.Doctor;
 
-import Klinik.Controller.Doctor.DoctorController;
+import Klinik.Controller.Doctor.DoctorInsertController;
+import Klinik.Utils.Helper;
+
 import javax.swing.*;
 
 /**
@@ -17,10 +19,10 @@ public class AddDoctor extends javax.swing.JFrame {
     /**
      * Creates new form AddDoctor
      */
-    DoctorController doctorController;
+    DoctorInsertController doctorInsertController;
     public AddDoctor() {
         initComponents();
-        doctorController = new DoctorController(null, this);
+        doctorInsertController = new DoctorInsertController(this);
     }
     public void viewMainDoctor() {
         this.dispose();
@@ -72,6 +74,11 @@ public class AddDoctor extends javax.swing.JFrame {
         jLabel6.setText("Phone Number");
 
         txtPhoneNumber.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        txtPhoneNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPhoneNumberKeyPressed(evt);
+            }
+        });
 
         btnSave.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         btnSave.setText("Save");
@@ -147,13 +154,18 @@ public class AddDoctor extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        doctorController.insertNewDoctor();
+        doctorInsertController.insertNewDoctor();
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
         viewMainDoctor();
     }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void txtPhoneNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPhoneNumberKeyPressed
+        // TODO add your handling code here:
+        new Helper().setNumberOnly(evt ,txtPhoneNumber);
+    }//GEN-LAST:event_txtPhoneNumberKeyPressed
 
     /**
      * @param args the command line arguments

@@ -9,6 +9,7 @@ import Klinik.View.Auth.ChangePassword;
 import Klinik.View.Auth.Login;
 
 import javax.swing.*;
+import java.util.Random;
 
 public class ChangePasswordController {
     ChangePassword frame;
@@ -30,27 +31,46 @@ public class ChangePasswordController {
                     if (!frame.getTxtnewpassword().getText().equals("") ){
                         if (!password.equals(frame.getTxtnewpassword().getText())) {
                             JOptionPane.showMessageDialog(frame, "Passwords do not match, please re-enter!", "Error", JOptionPane.ERROR_MESSAGE);
-                            frame.setCaptcha();
-                        }else{
-                            String passwordHash = PasswordHasher.hashPassword(password);
-                            authInterface.changePassword(username, passwordHash);
-                            JOptionPane.showMessageDialog(frame, "Password changed successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                            this.frame.dispose();
-                            new Login().setVisible(true);
+                            setCaptcha();
+                        }else {
+                            if (frame.getTxtpasswordverification().getText().length() > 6) {
+                                String passwordHash = PasswordHasher.hashPassword(password);
+                                authInterface.changePassword(username, passwordHash);
+                                JOptionPane.showMessageDialog(frame, "Password changed successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                                this.frame.dispose();
+                                new Login().setVisible(true);
+                            } else {
+                                JOptionPane.showMessageDialog(frame, "Password must be at least 8 characters long.");
+                                setCaptcha();
+                            }
                         }
                     }else {
                         JOptionPane.showMessageDialog(frame, "Please enter your new password", "Error", JOptionPane.ERROR_MESSAGE);
-                        frame.setCaptcha();
+                        setCaptcha();
                     }
                 }else{
                     JOptionPane.showMessageDialog(frame, "Captcha value not same, Please enter the new captcha ", "Error", JOptionPane.ERROR_MESSAGE);
-                    frame.setCaptcha();
+                    setCaptcha();
                 }
             }else {
                 JOptionPane.showMessageDialog(frame, "Please enter the captcha value", "Error", JOptionPane.ERROR_MESSAGE);
-                frame.setCaptcha();
+                setCaptcha();
 
             }
         }
+    }
+    public void setCaptcha(){
+        String ALPHANUMERIC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+        Random rnd = new Random();
+
+        StringBuilder sb = new StringBuilder(6);
+        for (int i = 0; i < 6; i++) {
+            sb.append(ALPHANUMERIC.charAt(rnd.nextInt(ALPHANUMERIC.length())));
+        }
+
+        String randomString = sb.toString().toLowerCase();
+        frame.getTxtCaptcha().setText("");
+        frame.getLbCaptcha().setText(randomString);
     }
 }

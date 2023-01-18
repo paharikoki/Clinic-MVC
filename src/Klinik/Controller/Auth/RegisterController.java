@@ -21,21 +21,20 @@ public class RegisterController {
         this.authInterface = new AuthDao();
         this.auth = auth;
     }
-
-    public  void register(){
+    public void register(){
         String hashedPassword=null;
         try {
             String fullName,userName,password;
             fullName = frame.getTxtFullname().getText();
             userName = frame.getTxtUsername().getText();
             password = frame.getTxtPassword().getText();
-            if (userName.length() <2){
-                JOptionPane.showMessageDialog(frame, "Username must be at least 8 characters long.");
+            if (userName.length() <6){
+                JOptionPane.showMessageDialog(frame, "Username must be at least 6 characters long.");
                 frame.captcha();
                 return;
             }
-            if (password.length() < 4){
-                JOptionPane.showMessageDialog(frame, "Password must be at least 6 characters long.");
+            if (password.length() <8){
+                JOptionPane.showMessageDialog(frame, "Password must be at least 8 characters long.");
                 frame.getTxtPassword().setText("");
                 frame.captcha();
                 return;

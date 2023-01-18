@@ -6,6 +6,7 @@
 package Klinik.View.Doctor;
 
 import Klinik.Controller.Doctor.DoctorController;
+import Klinik.Utils.Helper;
 import Klinik.View.MainView;
 
 import javax.swing.*;
@@ -18,28 +19,21 @@ import java.awt.event.WindowEvent;
  */
 public class MainDoctor extends javax.swing.JFrame {
     DoctorController doctorController;
+    int rowtable =-1;
     /**
      * Creates new form MainDokter
      */
-    public void setWhenClose(){
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                super.windowClosing(e);
-                new MainView().setVisible(true);
-            }
-        });
-    }
     public void viewAddNewDoctor(){
         this.dispose();
         new AddDoctor().setVisible(true);
     }
+
     public MainDoctor() {
         initComponents();
-        doctorController = new DoctorController(this,null);
+
+        doctorController = new DoctorController(this);
         doctorController.loadTableDoctors();
-        setWhenClose();
+        new Helper().setWhenCloseToFrame(new MainView(),this);
     }
 
     /**
@@ -74,6 +68,11 @@ public class MainDoctor extends javax.swing.JFrame {
 
         btnSearch.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         tblDoctor.setFont(new java.awt.Font("Tahoma", 0, 21)); // NOI18N
         tblDoctor.setModel(new javax.swing.table.DefaultTableModel(
@@ -99,9 +98,19 @@ public class MainDoctor extends javax.swing.JFrame {
 
         btnEditDoctor.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
         btnEditDoctor.setText("Edit Doctor");
+        btnEditDoctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditDoctorActionPerformed(evt);
+            }
+        });
 
         btnDeleteDoctor.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
         btnDeleteDoctor.setText("Delete Doctor");
+        btnDeleteDoctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteDoctorActionPerformed(evt);
+            }
+        });
 
         btnViewDetailDoctor.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
         btnViewDetailDoctor.setText("View Doctor");
@@ -166,6 +175,21 @@ public class MainDoctor extends javax.swing.JFrame {
         viewAddNewDoctor();
     }//GEN-LAST:event_btnNewDoctorActionPerformed
 
+    private void btnEditDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditDoctorActionPerformed
+        // TODO add your handling code here:
+        doctorController.viewEditDoctor();
+    }//GEN-LAST:event_btnEditDoctorActionPerformed
+
+    private void btnDeleteDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteDoctorActionPerformed
+        // TODO add your handling code here:
+        doctorController.deleteDoctor();
+    }//GEN-LAST:event_btnDeleteDoctorActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        doctorController.searchDoctor();
+    }//GEN-LAST:event_btnSearchActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -221,5 +245,21 @@ public class MainDoctor extends javax.swing.JFrame {
 
     public void setTblDoctor(JTable tblDoctor) {
         this.tblDoctor = tblDoctor;
+    }
+
+    public int getRowtable() {
+        return rowtable;
+    }
+
+    public void setRowtable(int rowtable) {
+        this.rowtable = rowtable;
+    }
+
+    public JTextField getTxtSearch() {
+        return txtSearch;
+    }
+
+    public void setTxtSearch(JTextField txtSearch) {
+        this.txtSearch = txtSearch;
     }
 }

@@ -23,22 +23,8 @@ public class ChangePassword extends javax.swing.JFrame {
     ChangePasswordController changePasswordController;
     public ChangePassword() {
         initComponents();
-        setCaptcha();
         changePasswordController = new ChangePasswordController(this);
-    }
-    public void setCaptcha(){
-        String ALPHANUMERIC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-
-        Random rnd = new Random();
-
-        StringBuilder sb = new StringBuilder(6);
-        for (int i = 0; i < 6; i++) {
-            sb.append(ALPHANUMERIC.charAt(rnd.nextInt(ALPHANUMERIC.length())));
-        }
-
-        String randomString = sb.toString().toLowerCase();
-        txtCaptcha.setText("");
-        lbCaptcha.setText(randomString);
+        changePasswordController.setCaptcha();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,14 +39,15 @@ public class ChangePassword extends javax.swing.JFrame {
         btnLogin = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtnewpassword = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtpasswordverification = new javax.swing.JTextField();
         lbCaptcha = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtCaptcha = new javax.swing.JTextField();
         btnChangePassword = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        txtnewpassword = new javax.swing.JPasswordField();
+        txtpasswordverification = new javax.swing.JPasswordField();
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,12 +57,8 @@ public class ChangePassword extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setText("New Password");
 
-        txtnewpassword.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setText("Repeat new password");
-
-        txtpasswordverification.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
         lbCaptcha.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lbCaptcha.setText("captcha");
@@ -101,25 +84,29 @@ public class ChangePassword extends javax.swing.JFrame {
             }
         });
 
+        txtnewpassword.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+
+        txtpasswordverification.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap(18, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel3)
-                                .addComponent(txtnewpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(284, 284, 284))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel4)
                                 .addComponent(txtpasswordverification, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel6)
                                 .addComponent(txtCaptcha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(79, 79, 79)
@@ -129,10 +116,13 @@ public class ChangePassword extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnChangePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(txtnewpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20))
             .addGroup(layout.createSequentialGroup()
-                .addGap(197, 197, 197)
+                .addGap(194, 194, 194)
                 .addComponent(lbCaptcha)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -143,15 +133,15 @@ public class ChangePassword extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(34, 34, 34)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(26, 26, 26)
                 .addComponent(txtnewpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(26, 26, 26)
                 .addComponent(txtpasswordverification, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(lbCaptcha)
-                .addGap(17, 17, 17)
+                .addGap(6, 6, 6)
                 .addComponent(jLabel6)
                 .addGap(26, 26, 26)
                 .addComponent(txtCaptcha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -159,7 +149,7 @@ public class ChangePassword extends javax.swing.JFrame {
                 .addComponent(btnChangePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -221,8 +211,8 @@ public class ChangePassword extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel lbCaptcha;
     private javax.swing.JTextField txtCaptcha;
-    private javax.swing.JTextField txtnewpassword;
-    private javax.swing.JTextField txtpasswordverification;
+    private javax.swing.JPasswordField txtnewpassword;
+    private javax.swing.JPasswordField txtpasswordverification;
     // End of variables declaration//GEN-END:variables
 
     public String getUsername() {
@@ -237,7 +227,7 @@ public class ChangePassword extends javax.swing.JFrame {
         return txtnewpassword;
     }
 
-    public void setTxtnewpassword(JTextField txtnewpassword) {
+    public void setTxtnewpassword(JPasswordField txtnewpassword) {
         this.txtnewpassword = txtnewpassword;
     }
 
@@ -245,7 +235,7 @@ public class ChangePassword extends javax.swing.JFrame {
         return txtpasswordverification;
     }
 
-    public void setTxtpasswordverification(JTextField txtpasswordverification) {
+    public void setTxtpasswordverification(JPasswordField txtpasswordverification) {
         this.txtpasswordverification = txtpasswordverification;
     }
 

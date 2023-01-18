@@ -68,13 +68,13 @@ public class Register extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JTextField();
         lbCaptcha = new javax.swing.JLabel();
         txtCaptcha = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         btnRegister = new javax.swing.JButton();
+        txtPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,8 +98,6 @@ public class Register extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setText("Password");
-
-        txtPassword.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
         lbCaptcha.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lbCaptcha.setText("captcha");
@@ -127,6 +125,8 @@ public class Register extends javax.swing.JFrame {
             }
         });
 
+        txtPassword.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -138,16 +138,15 @@ public class Register extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel6)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)
-                                .addComponent(txtFullname, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
-                                .addComponent(txtUsername)
-                                .addComponent(txtPassword)
-                                .addComponent(txtCaptcha))))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(txtFullname, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                            .addComponent(txtUsername)
+                            .addComponent(txtCaptcha)
+                            .addComponent(txtPassword)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(71, 71, 71)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,7 +177,7 @@ public class Register extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(45, 45, 45)
                 .addComponent(lbCaptcha)
                 .addGap(22, 22, 22)
                 .addComponent(jLabel6)
@@ -186,7 +185,7 @@ public class Register extends javax.swing.JFrame {
                 .addComponent(txtCaptcha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -199,7 +198,7 @@ public class Register extends javax.swing.JFrame {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
-        if (txtFullname.getText().equals("") || txtUsername.getText().equals("") || txtPassword.getText().equals("")) {
+        if (txtFullname.getText().isEmpty() || txtUsername.getText().isEmpty() || txtPassword.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please fill in all the fields.", "Required Fill Field", JOptionPane.INFORMATION_MESSAGE);
             captcha();
             return;
@@ -270,7 +269,7 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JLabel lbCaptcha;
     private javax.swing.JTextField txtCaptcha;
     private javax.swing.JTextField txtFullname;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 
@@ -302,7 +301,7 @@ public class Register extends javax.swing.JFrame {
         return txtPassword;
     }
 
-    public void setTxtPassword(JTextField txtPassword) {
+    public void setTxtPassword(JPasswordField txtPassword) {
         this.txtPassword = txtPassword;
     }
 
