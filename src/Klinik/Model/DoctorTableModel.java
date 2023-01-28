@@ -1,58 +1,51 @@
 package Klinik.Model;
 
 import javax.swing.table.AbstractTableModel;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DoctorTableModel extends AbstractTableModel {
     List<Doctor> doctorList;
+    private Object[][] data;
+    private Map<Integer, Integer> idMap;
+    private String[] columnName={"No","First Name","Last Name","Specialty","Phone Number"};
 
     public DoctorTableModel(List<Doctor> doctorList) {
         this.doctorList = doctorList;
+        data = new Object[doctorList.size()][columnName.length];
+        idMap = new HashMap<>();
+        for (int i =0;i<doctorList.size();i++){
+            Doctor doctors = doctorList.get(i);
+            data[i][0]=i+1;
+            data[i][1]=doctors.getFirstName();
+            data[i][2]=doctors.getLastName();
+            data[i][3]=doctors.getSpecialty();
+            data[i][4]=doctors.getPhoneNumber();
+            idMap.put(i,doctors.getDoctorId());
+        }
     }
 
     @Override
     public String getColumnName(int column) {
-        switch (column){
-            case 0:
-                return "Number";
-            case 1:
-                return "First Name";
-            case 2:
-                return "Last Name";
-            case 3 :
-                return "Specialty";
-            case 4:
-                return "Phone Number";
-            default:
-                return null;
-        }
+        return columnName[column];
     }
 
     @Override
     public int getRowCount() {
-        return doctorList.size();
+        return data.length;
     }
 
     @Override
     public int getColumnCount() {
-        return 5;
+        return columnName.length;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        switch (columnIndex){
-            case 0:
-                return doctorList.get(rowIndex).getDoctorId();
-            case 1:
-                return doctorList.get(rowIndex).getFirstName();
-            case 2:
-                return doctorList.get(rowIndex).getLastName();
-            case 3:
-                return doctorList.get(rowIndex).getSpecialty();
-            case 4:
-                return doctorList.get(rowIndex).getPhoneNumber();
-            default:
-                return null;
-        }
+        return data[rowIndex][columnIndex];
+    }
+    public int getIdAt(int rowIndex){
+        return idMap.get(rowIndex);
     }
 }

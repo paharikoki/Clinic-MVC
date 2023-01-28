@@ -1,60 +1,52 @@
 package Klinik.Model;
 
 import javax.swing.table.AbstractTableModel;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PatientTableModel extends AbstractTableModel {
     List<Patient> patientList;
+    private Object[][] data;
+    private Map<Integer,Integer> idMap;
+    private String[] columnName={"No","First Name","Last Name","Date Of Birth","Gender","Address"};
 
     public PatientTableModel(List<Patient> patientList) {
         this.patientList = patientList;
+        data= new Object[patientList.size()][columnName.length];
+        idMap = new HashMap<>();
+        for (int i=0;i<patientList.size();i++){
+            Patient patients = patientList.get(i);
+            data[i][0]=i+1;
+            data[i][1]=patients.getFirstName();
+            data[i][2]=patients.getLastName();
+            data[i][3]=patients.getDateOfBirth();
+            data[i][4]=patients.getGender();
+            data[i][5]=patients.getAddress();
+            idMap.put(i,patients.getPatientId());
+        }
     }
 
     @Override
     public String getColumnName(int column) {
-        switch (column){
-            case 0:
-                return "patientId";
-            case 1:
-                return "firstName";
-            case 2:
-                return "lastName";
-            case 3 :
-                return "dateOfBirth";
-            case 4:
-                return "gender";
-            case 5:
-                return "address";
-            default:
-                return null;
-        }
+        return columnName[column];
     }
 
     @Override
     public int getRowCount() {
-        return patientList.size();
+        return data.length;
     }
 
     @Override
     public int getColumnCount() {
-        return 5;
+        return columnName.length;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        switch (columnIndex){
-            case 0:
-                return patientList.get(rowIndex).getFirstName();
-            case 1:
-                return patientList.get(rowIndex).getLastName();
-            case 2:
-                return patientList.get(rowIndex).getDateOfBirth();
-            case 3:
-                return patientList.get(rowIndex).getGender();
-            case 4:
-                return patientList.get(rowIndex).getAddress();
-            default:
-                return null;
-        }
+        return data[rowIndex][columnIndex];
+    }
+    public int getIdAt(int rowIndex){
+        return idMap.get(rowIndex);
     }
 }

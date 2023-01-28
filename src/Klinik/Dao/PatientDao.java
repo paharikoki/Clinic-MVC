@@ -17,7 +17,7 @@ public class PatientDao implements PatientInterface {
     final String selectAll ="SELECT * FROM patients";
     final String findDoctorName="SELECT * FROM patients WHERE firstName LIKE ? OR lastName LIKE ?";
     public PatientDao(){
-        Connection.connection();
+        connection= Connection.connection();
     }
     @Override
     public void insert(Patient p) {
@@ -30,10 +30,6 @@ public class PatientDao implements PatientInterface {
             statement.setString(4,p.getGender());
             statement.setString(5,p.getAddress());
             statement.executeUpdate();
-            ResultSet rs = statement.getGeneratedKeys();
-            while (rs.next()){
-                p.setPatientId(rs.getInt(0));
-            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }finally {
@@ -106,7 +102,7 @@ public class PatientDao implements PatientInterface {
     }
 
     @Override
-    public List<Patient> getFindDoctorName(String name) {
+    public List<Patient> getFindPatientName(String name) {
         List<Patient> ps = null;
         try {
             ps= new ArrayList<Patient>();

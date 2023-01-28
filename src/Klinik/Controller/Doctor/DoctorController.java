@@ -20,7 +20,6 @@ public class DoctorController {
     public DoctorController(MainDoctor frame) {
         this.doctorInterface = new DoctorDao();
         this.frame = frame;
-        this.doctors = doctors;
     }
     public void loadTableDoctors() {
         Font font = frame.getTblDoctor().getFont();
@@ -35,7 +34,8 @@ public class DoctorController {
         row = frame.getTblDoctor().getSelectedRow();
         if (row >= 0) {
             Doctor doctor = new Doctor();
-            doctor.setDoctorId((Integer) frame.getTblDoctor().getValueAt(row, 0));
+            DoctorTableModel model = new DoctorTableModel(doctors);
+            doctor.setDoctorId(model.getIdAt(row));
             doctor.setFirstName((String) frame.getTblDoctor().getValueAt(row, 1));
             doctor.setLastName((String) frame.getTblDoctor().getValueAt(row, 2));
             doctor.setSpecialty((String) frame.getTblDoctor().getValueAt(row, 3));

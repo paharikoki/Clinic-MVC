@@ -5,7 +5,9 @@
  */
 package Klinik.View.Patient;
 
+import Klinik.Controller.Patient.AddPatientController;
 import Klinik.Controller.Patient.PatientController;
+import Klinik.Utils.Helper;
 import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
@@ -19,11 +21,15 @@ public class AddPatient extends javax.swing.JFrame {
     /**
      * Creates new form AddPatient
      */
-    PatientController patientController;
+    int idPatient =-1;
+    AddPatientController addPatientController;
     public AddPatient() {
         initComponents();
-        patientController = new PatientController(this);
+        addPatientController = new AddPatientController(this);
+        addPatientController.clear();
+        new Helper().setWhenCloseToFrame(new MainPatient(),this);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,8 +49,9 @@ public class AddPatient extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         cmbGender = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        txtAddress = new javax.swing.JTextField();
-        btnAdd = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtAddress = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,16 +82,19 @@ public class AddPatient extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel6.setText("Address");
 
-        txtAddress.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-
-        btnAdd.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnAdd.setText("Save");
-        btnAdd.setActionCommand("");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+        btnSave.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnSave.setText("Save");
+        btnSave.setActionCommand("");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
+                btnSaveActionPerformed(evt);
             }
         });
+
+        txtAddress.setColumns(20);
+        txtAddress.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtAddress.setRows(5);
+        jScrollPane1.setViewportView(txtAddress);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,6 +105,9 @@ public class AddPatient extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(200, 200, 200)
                         .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(104, 104, 104)
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(77, 77, 77)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -107,10 +120,7 @@ public class AddPatient extends javax.swing.JFrame {
                             .addComponent(txtLastName)
                             .addComponent(jdcDateofBirth, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cmbGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtAddress)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(104, 104, 104)
-                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1))))
                 .addContainerGap(78, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -136,19 +146,21 @@ public class AddPatient extends javax.swing.JFrame {
                 .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        patientController.addPasien();
-    }//GEN-LAST:event_btnAddActionPerformed
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        addPatientController.checkId();
+    }//GEN-LAST:event_btnSaveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,7 +199,7 @@ public class AddPatient extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnSave;
     private javax.swing.JComboBox<String> cmbGender;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -195,8 +207,9 @@ public class AddPatient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
     private com.toedter.calendar.JDateChooser jdcDateofBirth;
-    private javax.swing.JTextField txtAddress;
+    private javax.swing.JTextArea txtAddress;
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtLastName;
     // End of variables declaration//GEN-END:variables
@@ -217,11 +230,11 @@ public class AddPatient extends javax.swing.JFrame {
         this.jdcDateofBirth = jdcDateofBirth;
     }
 
-    public JTextField getTxtAddress() {
+    public JTextArea getTxtAddress() {
         return txtAddress;
     }
 
-    public void setTxtAddress(JTextField txtAddress) {
+    public void setTxtAddress(JTextArea txtAddress) {
         this.txtAddress = txtAddress;
     }
 
@@ -239,5 +252,13 @@ public class AddPatient extends javax.swing.JFrame {
 
     public void setTxtLastName(JTextField txtLastName) {
         this.txtLastName = txtLastName;
+    }
+
+    public int getIdPatient() {
+        return idPatient;
+    }
+
+    public void setIdPatient(int idPatient) {
+        this.idPatient = idPatient;
     }
 }

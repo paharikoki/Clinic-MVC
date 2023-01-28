@@ -5,6 +5,12 @@
  */
 package Klinik.View.Patient;
 
+import Klinik.Controller.Patient.PatientController;
+import Klinik.Utils.Helper;
+import Klinik.View.MainView;
+
+import javax.swing.*;
+
 /**
  *
  * @author Administrator
@@ -14,8 +20,13 @@ public class MainPatient extends javax.swing.JFrame {
     /**
      * Creates new form MainPatient
      */
+    int rowtable =-1;
+    PatientController patientController;
     public MainPatient() {
         initComponents();
+        patientController = new PatientController(this);
+        patientController.loadTablePatient();
+        new Helper().setWhenCloseToFrame(new MainView(),this);
     }
 
     /**
@@ -27,33 +38,149 @@ public class MainPatient extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        btnEditPatient = new javax.swing.JButton();
+        btnDeletePatient = new javax.swing.JButton();
+        btnRefresh = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        txtSearch = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        btnSearch = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblPatient = new javax.swing.JTable();
+        btnNewPatient = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel1.setText("Patient Main Form");
+        btnEditPatient.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
+        btnEditPatient.setText("Edit Patient");
+        btnEditPatient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditPatientActionPerformed(evt);
+            }
+        });
+
+        btnDeletePatient.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
+        btnDeletePatient.setText("Delete Patient");
+        btnDeletePatient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletePatientActionPerformed(evt);
+            }
+        });
+
+        btnRefresh.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
+        btnRefresh.setText("Refresh");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel2.setText("Patient Main Form");
+
+        txtSearch.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel3.setText("Search");
+
+        btnSearch.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+
+        tblPatient.setFont(new java.awt.Font("Tahoma", 0, 21)); // NOI18N
+        tblPatient.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblPatient);
+
+        btnNewPatient.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
+        btnNewPatient.setText("Add New Patient");
+        btnNewPatient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewPatientActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(235, 235, 235)
-                .addComponent(jLabel1)
-                .addContainerGap(274, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 814, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(412, 412, 412)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addComponent(btnRefresh)
+                        .addGap(28, 28, 28)
+                        .addComponent(btnNewPatient)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnEditPatient)
+                        .addGap(28, 28, 28)
+                        .addComponent(btnDeletePatient)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(509, Short.MAX_VALUE))
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNewPatient)
+                    .addComponent(btnEditPatient)
+                    .addComponent(btnDeletePatient)
+                    .addComponent(btnRefresh))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnNewPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewPatientActionPerformed
+        // TODO add your handling code here:
+        patientController.moveToViewAddPatient();
+    }//GEN-LAST:event_btnNewPatientActionPerformed
+
+    private void btnEditPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditPatientActionPerformed
+        // TODO add your handling code here:
+        patientController.moveToViewEditPatient();
+    }//GEN-LAST:event_btnEditPatientActionPerformed
+
+    private void btnDeletePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletePatientActionPerformed
+        // TODO add your handling code here:
+        patientController.deletePatient();
+    }//GEN-LAST:event_btnDeletePatientActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -91,6 +218,79 @@ public class MainPatient extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnDeletePatient;
+    private javax.swing.JButton btnEditPatient;
+    private javax.swing.JButton btnNewPatient;
+    private javax.swing.JButton btnRefresh;
+    private javax.swing.JButton btnSearch;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblPatient;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
+
+    public JButton getBtnDeletePatient() {
+        return btnDeletePatient;
+    }
+
+    public void setBtnDeletePatient(JButton btnDeletePatient) {
+        this.btnDeletePatient = btnDeletePatient;
+    }
+
+    public JButton getBtnEditPatient() {
+        return btnEditPatient;
+    }
+
+    public void setBtnEditPatient(JButton btnEditPatient) {
+        this.btnEditPatient = btnEditPatient;
+    }
+
+    public JButton getBtnNewPatient() {
+        return btnNewPatient;
+    }
+
+    public void setBtnNewPatient(JButton btnNewPatient) {
+        this.btnNewPatient = btnNewPatient;
+    }
+
+    public JButton getBtnRefresh() {
+        return btnRefresh;
+    }
+
+    public void setBtnRefresh(JButton btnRefresh) {
+        this.btnRefresh = btnRefresh;
+    }
+
+    public JButton getBtnSearch() {
+        return btnSearch;
+    }
+
+    public void setBtnSearch(JButton btnSearch) {
+        this.btnSearch = btnSearch;
+    }
+
+    public JTable getTblPatient() {
+        return tblPatient;
+    }
+
+    public void setTblPatient(JTable tblPatient) {
+        this.tblPatient = tblPatient;
+    }
+
+    public JTextField getTxtSearch() {
+        return txtSearch;
+    }
+
+    public void setTxtSearch(JTextField txtSearch) {
+        this.txtSearch = txtSearch;
+    }
+
+    public int getRowtable() {
+        return rowtable;
+    }
+
+    public void setRowtable(int rowtable) {
+        this.rowtable = rowtable;
+    }
 }

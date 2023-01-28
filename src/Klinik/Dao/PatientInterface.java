@@ -13,5 +13,5 @@ public interface PatientInterface {
     public void delete(int id);
 
     public List<Patient> getAll();
-    public List<Patient> getFindDoctorName(String name);
+    public List<Patient> getFindPatientName(String name);
 }
