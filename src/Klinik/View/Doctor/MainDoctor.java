@@ -54,7 +54,7 @@ public class MainDoctor extends javax.swing.JFrame {
         btnNewDoctor = new javax.swing.JButton();
         btnEditDoctor = new javax.swing.JButton();
         btnDeleteDoctor = new javax.swing.JButton();
-        btnViewDetailDoctor = new javax.swing.JButton();
+        btnRefresh = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,8 +112,13 @@ public class MainDoctor extends javax.swing.JFrame {
             }
         });
 
-        btnViewDetailDoctor.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
-        btnViewDetailDoctor.setText("View Doctor");
+        btnRefresh.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
+        btnRefresh.setText("Refresh");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -135,8 +140,8 @@ public class MainDoctor extends javax.swing.JFrame {
                         .addGap(412, 412, 412)
                         .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(106, 106, 106)
-                        .addComponent(btnViewDetailDoctor)
+                        .addGap(147, 147, 147)
+                        .addComponent(btnRefresh)
                         .addGap(28, 28, 28)
                         .addComponent(btnNewDoctor)
                         .addGap(26, 26, 26)
@@ -162,7 +167,7 @@ public class MainDoctor extends javax.swing.JFrame {
                     .addComponent(btnNewDoctor)
                     .addComponent(btnEditDoctor)
                     .addComponent(btnDeleteDoctor)
-                    .addComponent(btnViewDetailDoctor))
+                    .addComponent(btnRefresh))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
@@ -189,6 +194,11 @@ public class MainDoctor extends javax.swing.JFrame {
         // TODO add your handling code here:
         doctorController.searchDoctor();
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        // TODO add your handling code here:
+        doctorController.loadTableDoctors();
+    }//GEN-LAST:event_btnRefreshActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,8 +240,8 @@ public class MainDoctor extends javax.swing.JFrame {
     private javax.swing.JButton btnDeleteDoctor;
     private javax.swing.JButton btnEditDoctor;
     private javax.swing.JButton btnNewDoctor;
+    private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JButton btnViewDetailDoctor;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
