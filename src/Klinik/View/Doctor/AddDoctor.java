@@ -5,7 +5,7 @@
  */
 package Klinik.View.Doctor;
 
-import Klinik.Controller.Doctor.DoctorInsertController;
+import Klinik.Controller.Doctor.AddDoctorController;
 import Klinik.Utils.Helper;
 
 import javax.swing.*;
@@ -19,10 +19,12 @@ public class AddDoctor extends javax.swing.JFrame {
     /**
      * Creates new form AddDoctor
      */
-    DoctorInsertController doctorInsertController;
+    AddDoctorController addDoctorController;
+    int idDoctor =-1;
+
     public AddDoctor() {
         initComponents();
-        doctorInsertController = new DoctorInsertController(this);
+        addDoctorController = new AddDoctorController(this);
     }
     public void viewMainDoctor() {
         this.dispose();
@@ -154,7 +156,7 @@ public class AddDoctor extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        doctorInsertController.insertNewDoctor();
+        addDoctorController.checkInsertorUpdate();
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
@@ -246,5 +248,13 @@ public class AddDoctor extends javax.swing.JFrame {
 
     public void setTxtSpecialty(JTextField txtSpecialty) {
         this.txtSpecialty = txtSpecialty;
+    }
+
+    public int getIdDoctor() {
+        return idDoctor;
+    }
+
+    public void setIdDoctor(int idDoctor) {
+        this.idDoctor = idDoctor;
     }
 }

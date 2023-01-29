@@ -191,6 +191,7 @@ public class MainPatient extends javax.swing.JFrame {
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
         // TODO add your handling code here:
         patientController.loadTablePatient();
+        txtSearch.setText("");
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     /**

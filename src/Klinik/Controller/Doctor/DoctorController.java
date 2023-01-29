@@ -4,7 +4,7 @@ import Klinik.Dao.DoctorDao;
 import Klinik.Dao.DoctorInterface;
 import Klinik.Model.Doctor;
 import Klinik.Model.DoctorTableModel;
-import Klinik.View.Doctor.EditDoctor;
+import Klinik.View.Doctor.AddDoctor;
 import Klinik.View.Doctor.MainDoctor;
 
 import javax.swing.*;
@@ -47,7 +47,7 @@ public class DoctorController {
     }
     public void viewEditDoctor(){
         if (selectTableDoctor() != null){
-            EditDoctor editDoctor = new EditDoctor();
+            AddDoctor editDoctor = new AddDoctor();
             int idDoctor =selectTableDoctor().getDoctorId();
             String firstName = selectTableDoctor().getFirstName();
             String lastName = selectTableDoctor().getLastName();
